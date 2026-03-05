@@ -1,0 +1,1642 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar Biologi Makin Asik - CellXplore</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <!-- Splash Screen/Welcome Page -->
+    <div id="splashScreen" class="splash-screen">
+      <video autoplay muted loop class="splash-video">
+        <source src="Image/VideoSel.mp4" type="video/mp4" />
+        Maaf, browser Anda tidak mendukung video HTML5.
+      </video>
+      <div class="splash-overlay"></div>
+      <div class="splash-content">
+        <div class="splash-logo">🧬</div>
+        <h1>CellXplore</h1>
+        <p>Platform Pembelajaran Biologi Interaktif</p>
+        <div class="splash-decorations">
+          <div class="dna-strand"></div>
+          <div class="dna-strand"></div>
+        </div>
+        <button class="btn-splash" onclick="closeSplashScreen()">
+          Mulai Belajar
+        </button>
+        <p class="splash-subtitle">Klik tombol di atas untuk melanjutkan</p>
+        <p class="splash-subtitle">Devloper : Dewi Aisyah Widiawati</p>
+      </div>
+    </div>
+
+    <!-- Main Content (Hidden until splash closed) -->
+    <div id="mainContent" class="main-content" style="display: none">
+      <!-- Navigation Bar -->
+      <nav class="navbar">
+        <div class="nav-container">
+          <div class="logo">
+            <h1>🧬 CellXplore</h1>
+          </div>
+          <div class="logo-right">
+            <img src="Image/Logo.png" alt="Biologi Pintar" class="logo-img" />
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="beranda" class="hero">
+        <div class="hero-content">
+          <h2>Selamat Datang di Platform Pembelajaran Biologi</h2>
+          <p>Belajar biologi dengan cara yang menyenangkan dan interaktif</p>
+          <button class="btn-primary" onclick="scrollToSection('#mulai')">
+            Mulai Belajar
+          </button>
+        </div>
+        <div class="hero-image"></div>
+      </section>
+
+      <!-- Instructional Guide -->
+      <section class="guide-section">
+        <div class="container">
+          <h2>Petunjuk Penggunaan Platform</h2>
+          <div class="guide-grid">
+            <div class="guide-card">
+              <div class="guide-icon">📚</div>
+              <h3>1. Baca Materi</h3>
+              <p>
+                Mulai dengan membaca materi pembelajaran yang telah disediakan
+              </p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-icon">🎬</div>
+              <h3>2. Tonton Video</h3>
+              <p>Pelajari melalui video penjelasan yang lebih interaktif</p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-icon">📝</div>
+              <h3>3. Selesaikan LKPD</h3>
+              <p>
+                Kerjakan lembar kerja peserta didik untuk memperdalam pemahaman
+              </p>
+            </div>
+            <div class="guide-card">
+              <div class="guide-icon">✅</div>
+              <h3>4. Evaluasi Diri</h3>
+              <p>Uji pemahaman Anda melalui soal-soal evaluasi</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Overview -->
+      <section class="features-section">
+        <div class="container">
+          <h2>Fitur Pembelajaran</h2>
+          <div class="features-grid">
+            <!-- Kata Pengantar -->
+            <div class="feature-box" onclick="openModal('kata-pengantar')">
+              <div class="feature-icon">📖</div>
+              <h3>Kata Pengantar</h3>
+              <p>Pengenalan singkat tentang materi pembelajaran</p>
+            </div>
+
+            <!-- Pemetaan Kompetensi -->
+            <div class="feature-box" onclick="openModal('pemetaan')">
+              <div class="feature-icon">🗺️</div>
+              <h3>Pemetaan Kompetensi</h3>
+              <p>Lihat kompetensi yang akan Anda capai</p>
+            </div>
+
+            <!-- Peta Konsep -->
+            <div class="feature-box" onclick="openModal('peta-konsep')">
+              <div class="feature-icon">🧠</div>
+              <h3>Peta Konsep</h3>
+              <p>Visualisasi hubungan antar konsep biologi</p>
+            </div>
+
+            <!-- Glosarium -->
+            <div class="feature-box" onclick="openModal('glosarium')">
+              <div class="feature-icon">📕</div>
+              <h3>Glosarium</h3>
+              <p>Kamus istilah biologi yang lengkap</p>
+            </div>
+
+            <!-- Materi Pembelajaran -->
+            <div class="feature-box" id="mulai" onclick="openModal('materi')">
+              <div class="feature-icon">📚</div>
+              <h3>Materi Pembelajaran</h3>
+              <p>Konten pembelajaran yang terstruktur</p>
+            </div>
+
+            <!-- Video Pembelajaran -->
+            <div class="feature-box" onclick="openModal('video')">
+              <div class="feature-icon">🎥</div>
+              <h3>Video Pembelajaran</h3>
+              <p>Penjelasan visual melalui video berkualitas</p>
+            </div>
+
+            <!-- Game Latihan -->
+            <div class="feature-box" onclick="openModal('game')">
+              <div class="feature-icon">🎮</div>
+              <h3>Game Latihan Soal</h3>
+              <p>Latihan interaktif yang menyenangkan</p>
+            </div>
+
+            <!-- E-LKPD -->
+            <div class="feature-box" onclick="openModal('lkpd')">
+              <div class="feature-icon">📄</div>
+              <h3>E-LKPD</h3>
+              <p>Lembar Kerja Peserta Didik digital</p>
+            </div>
+
+            <!-- Evaluasi -->
+            <div class="feature-box" onclick="openModal('evaluasi')">
+              <div class="feature-icon">✏️</div>
+              <h3>Evaluasi</h3>
+              <p>Penilaian kemampuan Anda</p>
+            </div>
+
+            <!-- Refleksi -->
+            <div class="feature-box" onclick="openModal('refleksi')">
+              <div class="feature-icon">💭</div>
+              <h3>Refleksi</h3>
+              <p>Renungkan pemahaman Anda</p>
+            </div>
+
+            <!-- Daftar Pustaka -->
+            <div class="feature-box" onclick="openModal('pustaka')">
+              <div class="feature-icon">📚</div>
+              <h3>Daftar Pustaka</h3>
+              <p>Referensi sumber pembelajaran</p>
+            </div>
+
+            <!-- Profil -->
+            <div class="feature-box" onclick="openModal('profil')">
+              <div class="feature-icon">👤</div>
+              <h3>Profil Devloper</h3>
+              <p>Kenali Devloper yang Membuat Website Ini</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODALS -->
+
+      <!-- Kata Pengantar Modal -->
+      <div id="kata-pengantar" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('kata-pengantar')"
+            >&times;</span
+          >
+          <h2>Kata Pengantar</h2>
+          <p>
+            Puji syukur saya panjatkan ke hadirat Tuhan Yang Maha Esa, karena
+            atas rahmat dan karunia-Nya, website CellXplore ini dapat
+            terselesaikan dengan baik.
+          </p>
+          <p>
+            Website ini disusun dengan tujuan utama untuk menyediakan sumber
+            belajar yang komprehensif dan mudah diakses mengenai dunia biologi,
+            khususnya materi tentang Sel. Sebagai unit terkecil dari kehidupan,
+            pemahaman mengenai sel sangatlah fundamental bagi siapa saja yang
+            mendalami ilmu pengetahuan alam. Namun, materi ini seringkali
+            dianggap rumit dan abstrak.
+          </p>
+          <p>
+            Melalui CellXplore, saya berupaya menyajikan materi tersebut dengan
+            visualisasi yang menarik, bahasa yang lugas, dan struktur yang
+            sistematis. Saya berharap website ini dapat menjadi jembatan bagi
+            siswa, mahasiswa, maupun masyarakat umum untuk memahami kompleksitas
+            kehidupan dimulai dari tingkat seluler.
+          </p>
+          <p>
+            Saya menyadari bahwa website ini masih jauh dari kata sempurna. Oleh
+            karena itu, kritik dan saran yang membangun sangat saya harapkan
+            demi pengembangan CellXplore di masa mendatang. Semoga keberadaan
+            website ini dapat memberikan manfaat yang sebesar-besarnya bagi
+            kemajuan pendidikan dan literasi sains di Indonesia.
+          </p>
+          <p><b> Selamat menjelajah!</b></p>
+        </div>
+      </div>
+
+      <!-- Pemetaan Kompetensi Modal -->
+      <div id="pemetaan" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('pemetaan')">&times;</span>
+          <h2>Pemetaan Kompetensi</h2>
+          <div class="competency-map">
+            <div class="competency-item">
+              <h3>Kompetensi Inti</h3>
+              <p><b>A. Pengetahuan (KI-3):</b></p>
+              <p>
+                Memahami, menerapkan, dan menganalisis pengetahuan faktual,
+                konseptual, dan prosedural tentang struktur dan fungsi sel
+                sebagai unit terkecil kehidupan
+              </p>
+              <p><b>B. Keterampilan (KI-4):</b></p>
+              <p>
+                Mengolah, menalar, dan menyaji dalam ranah konkret dan ranah
+                abstrak terkait dengan pengembangan dari yang dipelajarinya di
+                sekolah tentang biologi sel
+              </p>
+            </div>
+            <div class="competency-item">
+              <h3>Kompetensi Dasar</h3>
+              <p>
+                A. Memahami komponen kimiawi sel, struktur, dan fungsi sel
+                sebagai unit terkecil kehidupan
+              </p>
+              <p>
+                B. Menyajikan hasil pengamatan tentang struktur dan fungsi
+                berbagai jenis sel melalui mikroskop
+              </p>
+            </div>
+            <div class="competency-item">
+              <h3>Indikator Pencapaian</h3>
+              <p><b> 1. Aspek Pengetahuan (Kognitif)</b></p>
+              <p><b>Pemahaman Konsep:</b></p>
+              <ul>
+                <li>Mendeskripsikan sejarah penemuan sel</li>
+                <li>
+                  Menjelaskan komponen kimiawi penyusun sel (air, protein,
+                  karbohidrat, lemak, vitamin, mineral)
+                </li>
+                <li>
+                  Mengidentifikasi struktur dan fungsi organel-organel sel
+                </li>
+                <li>Membedakan sel prokariotik dan eukariotik</li>
+                <li>Menjelaskan perbedaan sel hewan dan tumbuhan</li>
+                <li>
+                  Menjelaskan mekanisme transpor melalui membran sel (difusi,
+                  osmosis, transpor aktif)
+                </li>
+                <li>Memahami proses metabolisme sel</li>
+                <li>Menjelaskan proses pembelahan sel (mitosis dan meiosis)</li>
+              </ul>
+              <p><b>Analisis:</b></p>
+              <ul>
+                <li>
+                  Menganalisis hubungan antara struktur dan fungsi berbagai
+                  organel sel
+                </li>
+                <li>
+                  Menganalisis perbedaan mekanisme transpor pasif dan aktif
+                </li>
+                <li>Membandingkan proses mitosis dan meiosis</li>
+              </ul>
+              <p><b>2. Aspek Keterampilan (Psikomotorik)</b></p>
+              <p><b>Keterampilan Proses:</b></p>
+              <ul>
+                <li>Menggunakan mikroskop untuk mengamati struktur sel</li>
+                <li>Membuat preparat basah sel tumbuhan dan hewan</li>
+                <li>Menggambar hasil pengamatan sel dengan tepat</li>
+                <li>
+                  Mengidentifikasi bagian-bagian sel dari hasil pengamatan
+                </li>
+              </ul>
+              <p><b>Keterampilan Teknologi:</b></p>
+              <ul>
+                <li>
+                  Menggunakan media digital untuk mempelajari struktur sel
+                </li>
+                <li>
+                  Mengakses dan memanfaatkan video pembelajaran interaktif
+                </li>
+                <li>Menggunakan game edukasi untuk latihan soal</li>
+              </ul>
+              <p><b>Keterampilan Berpikir Ilmiah:</b></p>
+              <ul>
+                <li>Mengamati dan mengidentifikasi fenomena seluler</li>
+                <li>Merumuskan hipotesis terkait fungsi sel</li>
+                <li>Menganalisis data hasil pengamatan</li>
+                <li>Menarik kesimpulan berdasarkan bukti</li>
+              </ul>
+              <p><b>3. Aspek Sikap (Afektif)</b></p>
+              <p><b>Sikap Ilmiah:</b></p>
+              <ul>
+                <li>Menunjukkan rasa ingin tahu terhadap dunia seluler</li>
+                <li>Menghargai keanekaragaman bentuk dan fungsi sel</li>
+                <li>Menunjukkan ketelitian dalam melakukan pengamatan</li>
+                <li>
+                  Menunjukkan rasa tanggung jawab dalam menggunakan media
+                  pembelajaran digital
+                </li>
+              </ul>
+            </div>
+            <div class="competency-item">
+              <h3>Tujuan Pembelajaran</h3>
+              <p>
+                Setelah mempelajari materi melalui website CellXplore, peserta
+                didik mampu:
+              </p>
+              <p><b> 1. Memahami Konsep Dasar Sel </b></p>
+              <ul>
+                <li>
+                  Menjelaskan sel sebagai unit struktural dan fungsional
+                  terkecil kehidupan
+                </li>
+              </ul>
+              <p><b> 2. Menganalisis Struktur dan Fungsi </b></p>
+              <ul>
+                <li>Mengidentifikasi organel-organel sel dan fungsinya</li>
+                <li>Menganalisis perbedaan sel prokariotik dan eukariotik</li>
+                <li>Membandingkan struktur sel hewan dan tumbuhan</li>
+              </ul>
+              <p><b> 3. Memahami Proses Seluler </b></p>
+              <ul>
+                <li>Menjelaskan mekanisme transpor membran</li>
+                <li>Memahami proses metabolisme dalam sel</li>
+                <li>Menganalisis tahapan pembelahan sel</li>
+              </ul>
+              <p><b> 4. Mengaplikasikan Pengetahuan </b></p>
+              <ul>
+                <li>
+                  Mengaitkan konsep sel dengan fenomena kehidupan sehari-hari
+                </li>
+                <li>Memecahkan masalah terkait struktur dan fungsi sel</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Peta Konsep Modal -->
+      <div id="peta-konsep" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('peta-konsep')">&times;</span>
+          <h2>Peta Konsep</h2>
+          <div class="concept-map">
+            <img src="Image/Petakonsep.png" alt="Peta Konsep" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Glosarium Modal -->
+      <div id="glosarium" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('glosarium')">&times;</span>
+          <h2>Glosarium</h2>
+          <input
+            type="text"
+            id="glossarySearch"
+            placeholder="Cari istilah..."
+            class="search-input"
+          />
+          <div id="glossaryList" class="glossary-list">
+            <div class="glossary-item">
+              <h4>Adenosin Trifosfat (ATP)</h4>
+              <p>
+                Molekul berenergi tinggi yang berfungsi sebagai sumber energi
+                utama untuk proses-proses seluler.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Adhesi Sel</h4>
+              <p>Kemampuan sel untuk menempel pada sel lain atau permukaan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Amitosis</h4>
+              <p>
+                Pembelahan sel yang terjadi secara langsung tanpa melalui
+                tahap-tahap tertentu, biasa terjadi pada sel prokariotik.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Anafase</h4>
+              <p>
+                Tahap pembelahan sel ketika kromatid saudara terpisah dan
+                bergerak menuju kutub yang berlawanan.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Apoptosis</h4>
+              <p>Kematian sel terprogram.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Autofagi</h4>
+              <p>
+                Organisme yang dapat membuat makanan sendiri melalui
+                fotosintesis atau kemosintesis.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Badan Golgi</h4>
+              <p>
+                Organel sel yang berfungsi dalam modifikasi, penyortiran, dan
+                pengemasan protein untuk sekresi.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Bakteri</h4>
+              <p>
+                Organisme prokariotik uniseluler yang tidak memiliki membran
+                inti.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Biofilm</h4>
+              <p>Komunitas bakteri yang menempel pada permukaan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Biosintesis</h4>
+              <p>
+                Proses pembentukan senyawa kompleks dari senyawa sederhana di
+                dalam sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Cairan Sitoplasma</h4>
+              <p>
+                Cairan kental di dalam sel yang mengandung air, ion, dan molekul
+                organik.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Campylobacter</h4>
+              <p>Contoh bakteri yang memiliki struktur sel prokariotik.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Diferensiasi Sel</h4>
+              <p>Proses sel menjadi terspesialisasi untuk fungsi tertentu.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Difusi</h4>
+              <p>
+                Pergerakan molekul dari area berkonsentrasi tinggi ke area
+                berkonsentrasi rendah.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Difusi Terfasilitasi</h4>
+              <p>
+                Difusi yang dibantu oleh protein transpor dalam membran sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Dinding Sel</h4>
+              <p>
+                Struktur kaku di luar membran sel yang memberikan perlindungan
+                dan dukungan, ditemukan pada sel tumbuhan, jamur, dan bakteri.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>DNA (Asam Deoksiribonukleat)</h4>
+              <p>
+                Molekul yang membawa informasi genetik untuk perkembangan dan
+                fungsi sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Ekskresi Sel</h4>
+              <p>Proses pengeluaran zat sisa metabolisme dari sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Eksositosis</h4>
+              <p>
+                Proses pengeluaran zat dari dalam sel ke luar sel melalui
+                vesikel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Endositosis</h4>
+              <p>
+                Proses pemasukan zat ke dalam sel dengan cara membentuk vesikel
+                dari membran sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Endosimbiosis</h4>
+              <p>
+                Teori yang menjelaskan asal-usul mitokondria dan kloroplas dari
+                bakteri yang hidup di dalam sel eukariotik.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Enzim</h4>
+              <p>
+                Protein yang berfungsi sebagai katalisator dalam reaksi biokimia
+                sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Eukariotik</h4>
+              <p>
+                Sel yang memiliki membran inti dan organel-organel yang terikat
+                membran.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Fagositosis</h4>
+              <p>
+                Jenis endositosis di mana sel menelan partikel padat yang besar.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Fiksasi</h4>
+              <p>
+                Proses pengawetan struktur sel untuk pengamatan mikroskopis.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Fotosintesis</h4>
+              <p>
+                Proses pembuatan makanan pada tumbuhan menggunakan energi
+                cahaya.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Fosfolipid</h4>
+              <p>Molekul lemak yang membentuk struktur dasar membran sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Gap Junction</h4>
+              <p>Saluran komunikasi antar sel hewan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Glikokaliks</h4>
+              <p>Lapisan karbohidrat pada permukaan luar membran sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Glikolisis</h4>
+              <p>Proses pemecahan glukosa menjadi piruvat di sitoplasma.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Granum</h4>
+              <p>Tumpukan tilakoid di dalam kloroplas.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Hidrolisis</h4>
+              <p>Pemecahan molekul dengan penambahan air.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Heterotrof</h4>
+              <p>
+                Organisme yang tidak dapat membuat makanan sendiri dan
+                bergantung pada organisme lain.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Hipertonik</h4>
+              <p>
+                Larutan dengan konsentrasi zat terlarut lebih tinggi
+                dibandingkan larutan lain.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Hipotonik</h4>
+              <p>
+                Larutan dengan konsentrasi zat terlarut lebih rendah
+                dibandingkan larutan lain.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Homeostasis</h4>
+              <p>
+                Kemampuan sel untuk mempertahankan kondisi internal yang stabil.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Imobilisasi</h4>
+              <p>Proses membuat sel atau enzim tidak bergerak.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Interfase</h4>
+              <p>
+                Fase di antara pembelahan sel ketika sel tumbuh dan mereplikasi
+                DNA.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Isotonik</h4>
+              <p>
+                Larutan dengan konsentrasi zat terlarut yang sama dengan larutan
+                lain.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Jaringan</h4>
+              <p>Kumpulan sel yang memiliki struktur dan fungsi yang sama.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kapsul</h4>
+              <p>Lapisan lendir di luar dinding sel bakteri.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kariosintesis</h4>
+              <p>Proses pembentukan zat dalam sel dengan bantuan karion.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Karioteka</h4>
+              <p>Membran yang membungkus inti sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Karsinogen</h4>
+              <p>Zat yang dapat menyebabkan kanker dengan merusak sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Katabolisme</h4>
+              <p>Proses pemecahan molekul kompleks menjadi sederhana.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kemiosmosis</h4>
+              <p>Produksi ATP menggunakan gradien proton.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Klorofil</h4>
+              <p>Pigmen hijau pada kloroplas yang menangkap energi cahaya.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kloroplas</h4>
+              <p>
+                Organel sel tumbuhan yang berfungsi sebagai tempat fotosintesis.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kromatin</h4>
+              <p>
+                Kompleks DNA dan protein yang membentuk kromosom di dalam
+                nukleus.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kromosom</h4>
+              <p>
+                Struktur yang mengandung DNA dan protein yang membawa informasi
+                genetik.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Kutub Sel</h4>
+              <p>Ujung-ujung sel yang berlawanan selama pembelahan sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Lisosom</h4>
+              <p>
+                Organel yang mengandung enzim pencernaan untuk memecah materi.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Lipid</h4>
+              <p>
+                Senyawa organik yang tidak larut dalam air, termasuk lemak dan
+                fosfolipid.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Lisis</h4>
+              <p>Pecahnya sel karena masuknya air berlebihan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Makromolekul</h4>
+              <p>
+                Molekul besar yang kompleks seperti protein, karbohidrat, dan
+                asam nukleat.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Meiosis</h4>
+              <p>
+                Pembelahan sel yang menghasilkan sel gamet dengan setengah
+                jumlah kromosom.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Membran Plasma</h4>
+              <p>Lapisan selektif permeabel yang mengelilingi sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Metabolisme</h4>
+              <p>Semua reaksi kimia yang terjadi di dalam sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Metafase</h4>
+              <p>
+                Tahap pembelahan sel ketika kromosom berjajar di bidang ekuator.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Mikrofilamen</h4>
+              <p>
+                Filamen protein tipis yang merupakan bagian dari sitoskeleton.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Mikrotubulus</h4>
+              <p>
+                Struktur tabung protein yang merupakan komponen sitoskeleton.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Mitokondria</h4>
+              <p>
+                Organel yang berfungsi sebagai tempat respirasi seluler dan
+                penghasil energi.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Mitosis</h4>
+              <p>
+                Pembelahan sel yang menghasilkan dua sel anak identik secara
+                genetik.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Mutasi</h4>
+              <p>Perubahan pada materi genetik sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Nekrosis</h4>
+              <p>Kematian sel akibat cedera atau kerusakan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Nukleolus</h4>
+              <p>
+                Struktur di dalam nukleus yang berfungsi dalam sintesis ribosom.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Nukleus</h4>
+              <p>
+                Organel yang mengandung materi genetik dan mengendalikan
+                aktivitas sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Organel</h4>
+              <p>Struktur khusus di dalam sel yang memiliki fungsi tertentu.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Osmosis</h4>
+              <p>
+                Difusi air melalui membran semipermeabel dari larutan hipotonik
+                ke hipertonik.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Pinositosis</h4>
+              <p>Jenis endositosis di mana sel menelan cairan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Plastida</h4>
+              <p>
+                Organel pada sel tumbuhan yang mencakup kloroplas, kromoplas,
+                dan leukoplas.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Plasmodesmata</h4>
+              <p>Saluran komunikasi antar sel tumbuhan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Prokariotik</h4>
+              <p>Sel yang tidak memiliki membran inti.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Profase</h4>
+              <p>Tahap pertama pembelahan sel ketika kromosom mulai memadat.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Protein</h4>
+              <p>
+                Makromolekul yang tersusun dari asam amino dan memiliki berbagai
+                fungsi seluler.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Protein Integral</h4>
+              <p>Protein yang tertanam dalam membran sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Protein Perifer</h4>
+              <p>Protein yang menempel pada permukaan membran sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Respirasi Seluler</h4>
+              <p>Proses pemecahan glukosa untuk menghasilkan ATP.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Retikulum Endoplasma (RE)</h4>
+              <p>Jaringan membran di dalam sitoplasma.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>RE Kasar</h4>
+              <p>Retikulum endoplasma yang ditempeli ribosom.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>RE Halus</h4>
+              <p>Retikulum endoplasma tanpa ribosom.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Ribosom</h4>
+              <p>Organel yang berfungsi sebagai tempat sintesis protein.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>RNA (Asam Ribonukleat)</h4>
+              <p>Molekul yang terlibat dalam sintesis protein.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sentriol</h4>
+              <p>Organel yang berperan dalam pembelahan sel.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sentromer</h4>
+              <p>
+                Daerah penyempitan pada kromosom yang menghubungkan kromatid
+                saudara.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sel</h4>
+              <p>Unit struktural dan fungsional terkecil dari kehidupan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sel Hewan</h4>
+              <p>Sel eukariotik tanpa dinding sel dan kloroplas.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sel Tumbuhan</h4>
+              <p>Sel eukariotik dengan dinding sel dan kloroplas.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Siklus Sel</h4>
+              <p>
+                Rangkaian peristiwa yang dialami sel dari satu pembelahan ke
+                pembelahan berikutnya.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sitoskeleton</h4>
+              <p>
+                Jaringan serat yang memberikan struktur dan dukungan pada sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sitoplasma</h4>
+              <p>Materi di dalam sel di luar nukleus.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Sitokinesis</h4>
+              <p>
+                Pembelahan sitoplasma yang terjadi setelah pembelahan nukleus.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Telofase</h4>
+              <p>
+                Tahap akhir pembelahan sel ketika membran nukleus terbentuk
+                kembali.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Teori Sel</h4>
+              <p>
+                Teori yang menyatakan bahwa semua makhluk hidup tersusun dari
+                sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Tilakoid</h4>
+              <p>
+                Struktur membran di dalam kloroplas yang mengandung klorofil.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Transpor Aktif</h4>
+              <p>
+                Pergerakan molekul melawan gradien konsentrasi yang memerlukan
+                energi.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Transpor Pasif</h4>
+              <p>
+                Pergerakan molekul mengikuti gradien konsentrasi tanpa energi.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Vakuola</h4>
+              <p>Organel berbentuk kantung yang berfungsi untuk penyimpanan.</p>
+            </div>
+            <div class="glossary-item">
+              <h4>Vesikel</h4>
+              <p>
+                Kantung kecil bermembran yang mengangkut materi di dalam sel.
+              </p>
+            </div>
+            <div class="glossary-item">
+              <h4>Zat Terlarut</h4>
+              <p>Partikel yang larut dalam pelarut membentuk larutan.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Materi Modal -->
+      <div id="materi" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('materi')">&times;</span>
+          <h2>Materi Pembelajaran</h2>
+          <div class="material-tabs">
+            <button class="tab-button active" onclick="showTab('materi-1')">
+              Bab 1: Sel
+            </button>
+            <button class="tab-button" onclick="showTab('materi-2')">
+              Bab 2: Jaringan
+            </button>
+            <button class="tab-button" onclick="showTab('materi-3')">
+              Bab 3: Organ
+            </button>
+          </div>
+
+          <div id="materi-1" class="tab-content active">
+            <h3>Bab 1: Sel - Unit Terkecil Kehidupan</h3>
+            <p>
+              Sel adalah unit terkecil kehidupan yang dapat melakukan semua
+              fungsi kehidupan. Semua makhluk hidup terdiri dari satu sel atau
+              lebih.
+            </p>
+            <h4>Struktur Sel:</h4>
+            <ul>
+              <li>
+                <strong>Membran Sel:</strong> Lapisan pelindung yang mengontrol
+                masuk keluarnya zat
+              </li>
+              <li>
+                <strong>Sitoplasma:</strong> Cairan sel yang mengandung berbagai
+                organel
+              </li>
+              <li>
+                <strong>Inti Sel (Nukleus):</strong> Organel yang mengandung DNA
+                dan mengontrol aktivitas sel
+              </li>
+            </ul>
+            <h4>Organel Sel:</h4>
+            <ul>
+              <li>Mitokondria - Pusat energi sel</li>
+              <li>Ribosom - Tempat sintesis protein</li>
+              <li>Retikulum Endoplasma - Jaringan transportasi</li>
+              <li>Golgi Apparatus - Pengepakan produk sel</li>
+            </ul>
+          </div>
+
+          <div id="materi-2" class="tab-content">
+            <h3>Bab 2: Jaringan - Kumpulan Sel Sejenis</h3>
+            <p>
+              Jaringan adalah kumpulan sel yang sejenis dan bekerja sama untuk
+              melakukan fungsi tertentu.
+            </p>
+            <h4>Jenis Jaringan pada Tumbuhan:</h4>
+            <ul>
+              <li>Jaringan Dermal</li>
+              <li>Jaringan Vaskular</li>
+              <li>Jaringan Dasar</li>
+            </ul>
+          </div>
+
+          <div id="materi-3" class="tab-content">
+            <h3>Bab 3: Organ - Kumpulan Jaringan</h3>
+            <p>
+              Organ adalah kumpulan dari beberapa jenis jaringan yang bekerja
+              sama untuk melakukan fungsi tertentu.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Modal -->
+      <div id="video" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('video')">&times;</span>
+          <h2>Video Pembelajaran</h2>
+          <div class="videos-grid">
+            <a
+              href="https://www.youtube.com/watch?v=Ckyz_Vr-LI8"
+              target="_blank"
+              class="video-item"
+              onclick="
+                window.open(
+                  'https://www.youtube.com/watch?v=Ckyz_Vr-LI8',
+                  '_blank',
+                );
+                return false;
+              "
+            >
+              <div class="video-frame">
+                <img
+                  src="https://img.youtube.com/vi/Ckyz_Vr-LI8/hqdefault.jpg"
+                  alt="Thumbnail Video 1"
+                  class="video-thumbnail"
+                />
+                <div class="play-button-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
+              </div>
+              <h4>Pengertian Sel, Jenis Sel dan Peta Konsep Komponen Sel</h4>
+              <p class="video-description">Klik untuk membuka di YouTube</p>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=Z8IpCmX0nMc"
+              target="_blank"
+              class="video-item"
+              onclick="
+                window.open(
+                  'https://www.youtube.com/watch?v=Z8IpCmX0nMc',
+                  '_blank',
+                );
+                return false;
+              "
+            >
+              <div class="video-frame">
+                <img
+                  src="https://img.youtube.com/vi/Z8IpCmX0nMc/hqdefault.jpg"
+                  alt="Thumbnail Video 2"
+                  class="video-thumbnail"
+                />
+                <div class="play-button-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
+              </div>
+              <h4>Membran Sel, Dinding Sel, Sitoplasma dan Sitoskeleton</h4>
+              <p class="video-description">Klik untuk membuka di YouTube</p>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=IufDScScFus"
+              target="_blank"
+              class="video-item"
+              onclick="
+                window.open(
+                  'https://www.youtube.com/watch?v=IufDScScFus',
+                  '_blank',
+                );
+                return false;
+              "
+            >
+              <div class="video-frame">
+                <img
+                  src="https://img.youtube.com/vi/IufDScScFus/hqdefault.jpg"
+                  alt="Thumbnail Video 3"
+                  class="video-thumbnail"
+                />
+                <div class="play-button-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
+              </div>
+              <h4>Ribosom dan Sentrosom</h4>
+              <p class="video-description">Klik untuk membuka di YouTube</p>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=a3sJSBMz0o4"
+              target="_blank"
+              class="video-item"
+              onclick="
+                window.open(
+                  'https://www.youtube.com/watch?v=a3sJSBMz0o4',
+                  '_blank',
+                );
+                return false;
+              "
+            >
+              <div class="video-frame">
+                <img
+                  src="https://img.youtube.com/vi/a3sJSBMz0o4/hqdefault.jpg"
+                  alt="Thumbnail Video 4"
+                  class="video-thumbnail"
+                />
+                <div class="play-button-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
+              </div>
+              <h4>
+                Nukleus, Retikulum Endoplasma, Badan Golgi, Lisosom & Vakuola
+              </h4>
+              <p class="video-description">Klik untuk membuka di YouTube</p>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=3xvtIrds5s4"
+              target="_blank"
+              class="video-item"
+              onclick="
+                window.open(
+                  'https://www.youtube.com/watch?v=3xvtIrds5s4',
+                  '_blank',
+                );
+                return false;
+              "
+            >
+              <div class="video-frame">
+                <img
+                  src="https://img.youtube.com/vi/3xvtIrds5s4/hqdefault.jpg"
+                  alt="Thumbnail Video 5"
+                  class="video-thumbnail"
+                />
+                <div class="play-button-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
+              </div>
+              <h4>Mitokondria, Kloroplas, Plastid, Peroksisom & Glioksisom</h4>
+              <p class="video-description">Klik untuk membuka di YouTube</p>
+            </a>
+            <a
+              href="https://www.youtube.com/watch?v=bg2eLw1BsDE"
+              target="_blank"
+              class="video-item"
+              onclick="
+                window.open(
+                  'https://www.youtube.com/watch?v=bg2eLw1BsDE',
+                  '_blank',
+                );
+                return false;
+              "
+            >
+              <div class="video-frame">
+                <img
+                  src="https://img.youtube.com/vi/bg2eLw1BsDE/hqdefault.jpg"
+                  alt="Thumbnail Video 6"
+                  class="video-thumbnail"
+                />
+                <div class="play-button-overlay">
+                  <div class="play-icon">▶</div>
+                </div>
+              </div>
+              <h4>Bahan Ajar Sel - Pembelahan Mitosis</h4>
+              <p class="video-description">Klik untuk membuka di YouTube</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Modal -->
+      <div id="game" class="modal">
+        <div class="modal-content game-modal">
+          <span class="close" onclick="closeModal('game')">&times;</span>
+
+          <!-- Game Welcome Screen -->
+          <div id="gameWelcome" class="game-welcome">
+            <div class="game-header">
+              <h2>🎮 CELL QUIZ MASTER 🎮</h2>
+              <p>
+                Uji pengetahuan biologi sel Anda dengan cara yang menyenangkan!
+              </p>
+            </div>
+            <div class="difficulty-selector">
+              <h3>Pilih Level Kesulitan:</h3>
+              <div class="difficulty-buttons">
+                <button class="difficulty-btn easy" onclick="startGame('easy')">
+                  <span class="difficulty-emoji">🌱</span>
+                  <span class="difficulty-name">Mudah</span>
+                  <span class="difficulty-desc">10 Soal</span>
+                </button>
+                <button
+                  class="difficulty-btn medium"
+                  onclick="startGame('medium')"
+                >
+                  <span class="difficulty-emoji">🌿</span>
+                  <span class="difficulty-name">Sedang</span>
+                  <span class="difficulty-desc">15 Soal</span>
+                </button>
+                <button class="difficulty-btn hard" onclick="startGame('hard')">
+                  <span class="difficulty-emoji">🌳</span>
+                  <span class="difficulty-name">Sulit</span>
+                  <span class="difficulty-desc">20 Soal</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Game Play Screen -->
+          <div id="gamePlayArea" class="game-play-area" style="display: none">
+            <div class="game-top-bar">
+              <div class="game-stats">
+                <div class="stat-item">
+                  <span class="stat-label">Skor</span>
+                  <span id="gameScore" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Streak 🔥</span>
+                  <span id="gameStreak" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Soal</span>
+                  <span id="gameQuestion"
+                    ><span id="currentQuestion">1</span>/<span
+                      id="totalQuestion"
+                      >10</span
+                    ></span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="game-progress-container">
+              <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div class="game-question-container">
+              <div class="question-number">
+                Soal #<span id="questionNum">1</span>
+              </div>
+              <div id="gameQuestionText" class="game-question-text"></div>
+            </div>
+
+            <div id="gameOptionsDisplay" class="game-options-display"></div>
+
+            <div class="game-footer">
+              <button id="skipBtn" class="btn-skip" onclick="skipQuestion()">
+                ⏭️ Skip
+              </button>
+              <div id="answerFeedback" class="answer-feedback"></div>
+            </div>
+          </div>
+
+          <!-- Game Result Screen -->
+          <div
+            id="gameResultArea"
+            class="game-result-area"
+            style="display: none"
+          >
+            <div class="result-header">
+              <div id="resultEmoji" class="result-emoji">🎉</div>
+              <h2 id="resultTitle">Luar Biasa!</h2>
+            </div>
+            <div class="result-stats">
+              <div class="result-stat">
+                <span class="result-stat-label">Total Skor</span>
+                <span id="finalScore" class="result-stat-value">0</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Benar</span>
+                <span id="correctAnswers" class="result-stat-value">0</span>
+              </div>
+              <div class="result-stat">
+                <span class="result-stat-label">Akurasi</span>
+                <span id="accuracy" class="result-stat-value">0%</span>
+              </div>
+            </div>
+            <div class="achievement-box">
+              <h3>🏆 Pencapaian</h3>
+              <div id="achievementText" class="achievement-text"></div>
+            </div>
+            <div class="result-buttons">
+              <button class="btn-primary" onclick="resetGame()">
+                🔄 Main Lagi
+              </button>
+              <button class="btn-secondary" onclick="closeModal('game')">
+                ❌ Keluar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LKPD Modal -->
+      <div id="lkpd" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('lkpd')">&times;</span>
+          <h2>Lembar Kerja Peserta Didik (LKPD)</h2>
+          <form id="lkpdForm" class="lkpd-form">
+            <h3>LKPD 1: Identifikasi Organel Sel</h3>
+            <div class="form-group">
+              <label>Nama Peserta Didik:</label>
+              <input type="text" required />
+            </div>
+            <div class="form-group">
+              <label>Soal 1: Sebutkan 3 fungsi mitokondria</label>
+              <textarea required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Soal 2: Jelaskan perbedaan sel hewan dan tumbuhan</label>
+              <textarea required></textarea>
+            </div>
+            <div class="form-group">
+              <label
+                >Soal 3: Gambarkan struktur membran sel dan jelaskan model yang
+                Anda gunakan</label
+              >
+              <textarea required></textarea>
+            </div>
+            <div class="form-group">
+              <label
+                >Soal 4: Tuliskan tahapan proses mitosis dan fungsi setiap
+                tahapan</label
+              >
+              <textarea required></textarea>
+            </div>
+            <div class="form-group">
+              <label
+                >Soal 5: Jelaskan hubungan antara struktur dan fungsi retikulum
+                endoplasma kasar dan halus</label
+              >
+              <textarea required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Kirim LKPD</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Evaluasi Modal -->
+      <div id="evaluasi" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('evaluasi')">&times;</span>
+          <h2>Evaluasi Pembelajaran</h2>
+          <form id="quizForm" class="quiz-form">
+            <div class="quiz-question">
+              <p>
+                <strong>1.</strong> Organel sel yang berfungsi sebagai pusat
+                energi adalah?
+              </p>
+              <label><input type="radio" name="q1" value="a" /> Inti sel</label>
+              <label
+                ><input type="radio" name="q1" value="b" /> Mitokondria</label
+              >
+              <label><input type="radio" name="q1" value="c" /> Ribosom</label>
+              <label
+                ><input type="radio" name="q1" value="d" /> Golgi
+                apparatus</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>2.</strong> Proses pembuatan makanan menggunakan cahaya
+                matahari disebut?
+              </p>
+              <label
+                ><input type="radio" name="q2" value="a" /> Respirasi</label
+              >
+              <label
+                ><input type="radio" name="q2" value="b" /> Fotosintesis</label
+              >
+              <label
+                ><input type="radio" name="q2" value="c" /> Fermentasi</label
+              >
+              <label
+                ><input type="radio" name="q2" value="d" /> Transpirasi</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p><strong>3.</strong> Membran sel berfungsi untuk?</p>
+              <label
+                ><input type="radio" name="q3" value="a" /> Menyimpan
+                energi</label
+              >
+              <label
+                ><input type="radio" name="q3" value="b" /> Mengontrol masuk
+                keluarnya zat</label
+              >
+              <label
+                ><input type="radio" name="q3" value="c" /> Tempat sintesis
+                protein</label
+              >
+              <label
+                ><input type="radio" name="q3" value="d" /> Memproduksi
+                energi</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>4.</strong> Organel yang berfungsi untuk sekresi protein
+                adalah?
+              </p>
+              <label><input type="radio" name="q4" value="a" /> Lisosom</label>
+              <label
+                ><input type="radio" name="q4" value="b" /> Badan Golgi</label
+              >
+              <label><input type="radio" name="q4" value="c" /> Nukleus</label>
+              <label><input type="radio" name="q4" value="d" /> Sentriol</label>
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>5.</strong> Sel yang tidak memiliki membran inti adalah?
+              </p>
+              <label
+                ><input type="radio" name="q5" value="a" /> Sel hewan</label
+              >
+              <label
+                ><input type="radio" name="q5" value="b" /> Sel tumbuhan</label
+              >
+              <label
+                ><input type="radio" name="q5" value="c" /> Sel
+                prokariotik</label
+              >
+              <label
+                ><input type="radio" name="q5" value="d" /> Sel
+                eukariotik</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>6.</strong> Proses pergerakan molekul melawan gradien
+                konsentrasi memerlukan?
+              </p>
+              <label><input type="radio" name="q6" value="a" /> Difusi</label>
+              <label><input type="radio" name="q6" value="b" /> Osmosis</label>
+              <label
+                ><input type="radio" name="q6" value="c" /> Energi ATP</label
+              >
+              <label
+                ><input type="radio" name="q6" value="d" /> Tidak memerlukan
+                energi</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p><strong>7.</strong> Kloroplas ditemukan pada?</p>
+              <label
+                ><input type="radio" name="q7" value="a" /> Sel bakteri</label
+              >
+              <label
+                ><input type="radio" name="q7" value="b" /> Sel hewan</label
+              >
+              <label
+                ><input type="radio" name="q7" value="c" /> Sel tumbuhan</label
+              >
+              <label
+                ><input type="radio" name="q7" value="d" /> Semua jenis
+                sel</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>8.</strong> Proses pembelahan sel yang menghasilkan 2
+                sel identik adalah?
+              </p>
+              <label><input type="radio" name="q8" value="a" /> Meiosis</label>
+              <label><input type="radio" name="q8" value="b" /> Mitosis</label>
+              <label><input type="radio" name="q8" value="c" /> Amitosis</label>
+              <label
+                ><input type="radio" name="q8" value="d" /> Cytokinesis</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>9.</strong> Retikulum endoplasma yang ditempeli ribosom
+                disebut?
+              </p>
+              <label><input type="radio" name="q9" value="a" /> RE halus</label>
+              <label><input type="radio" name="q9" value="b" /> RE kasar</label>
+              <label
+                ><input type="radio" name="q9" value="c" /> RE compleks</label
+              >
+              <label
+                ><input type="radio" name="q9" value="d" /> Golgi
+                apparatus</label
+              >
+            </div>
+
+            <div class="quiz-question">
+              <p>
+                <strong>10.</strong> Organel yang mengandung enzim pencernaan
+                untuk memecah zat dalam sel adalah?
+              </p>
+              <label
+                ><input type="radio" name="q10" value="a" /> Mitokondria</label
+              >
+              <label><input type="radio" name="q10" value="b" /> Vakuola</label>
+              <label><input type="radio" name="q10" value="c" /> Lisosom</label>
+              <label
+                ><input type="radio" name="q10" value="d" /> Peroksisom</label
+              >
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Selesaikan Evaluasi
+            </button>
+          </form>
+          <div
+            id="evaluationResult"
+            style="display: none"
+            class="evaluation-result"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Refleksi Modal -->
+      <div id="refleksi" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('refleksi')">&times;</span>
+          <h2>Refleksi Pembelajaran</h2>
+          <form id="reflectionForm" class="reflection-form">
+            <div class="form-group">
+              <label
+                >1. Konsep apa yang paling mudah Anda pahami hari ini?</label
+              >
+              <textarea placeholder="Tuliskan jawaban..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label>2. Konsep apa yang masih membingungkan?</label>
+              <textarea placeholder="Tuliskan jawaban..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label>3. Bagaimana Anda bisa menerapkan pembelajaran ini?</label>
+              <textarea placeholder="Tuliskan jawaban..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label>4. Berapa tingkat pemahaman Anda (1-5)?</label>
+              <select required>
+                <option value="">Pilih...</option>
+                <option value="1">1 - Sangat Kurang</option>
+                <option value="2">2 - Kurang</option>
+                <option value="3">3 - Cukup</option>
+                <option value="4">4 - Baik</option>
+                <option value="5">5 - Sangat Baik</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary">Kirim Refleksi</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Daftar Pustaka Modal -->
+      <div id="pustaka" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('pustaka')">&times;</span>
+          <h2>Daftar Pustaka</h2>
+          <div class="bibliography">
+            <div class="reference">
+              <h4>Buku Referensi:</h4>
+              <ol>
+                <li>
+                  Campbell, N. A., et al. (2016). "Biology: A Global Approach"
+                  (11th Edition). Pearson Education.
+                </li>
+                <li>
+                  Irnaningtyas. (2013). "Biologi untuk SMA/MA Kelas XI".
+                  Erlangga.
+                </li>
+                <li>
+                  Pratiwi, D. A., et al. (2016). "Biologi dan Makhluk Hidup".
+                  Putra Jaya.
+                </li>
+              </ol>
+            </div>
+            <div class="reference">
+              <h4>Situs Web Rujukan:</h4>
+              <ul>
+                <li><a href="#" target="_blank">Khan Academy Biology</a></li>
+                <li><a href="#" target="_blank">Biologi Online</a></li>
+                <li><a href="#" target="_blank">Scitable by Nature</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profil Modal -->
+      <div id="profil" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('profil')">&times;</span>
+          <h2>Profil Developer</h2>
+          <div class="profile-card">
+            <div class="profile-avatar">
+              <img src="Image/Dewi.jpeg" alt="Dewi Aisyah Widiawati" />
+            </div>
+            <div class="profile-info">
+              <h3>Dewi Aisyah Widiawati</h3>
+              <p><strong>Jurusan:</strong> Pendidikan Biologi</p>
+              <p><strong>Universitas:</strong> Universitas Negeri Malang</p>
+            </div>
+          </div>
+          <div class="progress-section">
+            <h3>Tentang Platform</h3>
+            <p>
+              Platform pembelajaran biologi ini dikembangkan dengan tujuan untuk
+              membantu peserta didik memahami konsep-konsep biologi secara lebih
+              mudah dan interaktif. Melalui berbagai fitur pembelajaran yang
+              variatif, saya berkomitmen untuk memberikan pengalaman belajar
+              yang menyenangkan dan efektif.
+            </p>
+            <p style="margin-top: 1rem">
+              Semoga platform ini bermanfaat bagi semua pengguna dalam
+              meningkatkan pemahaman biologi. Selamat belajar!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="container">
+          <p>
+            &copy; 2026 Biologi Pintar. Platform Pembelajaran Biologi Interaktif
+          </p>
+          <p>
+            Dibuat oleh Dewi Aisyah Widiawati untuk pendidikan yang lebih baik
+          </p>
+        </div>
+      </footer>
+    </div>
+    <!-- End of mainContent -->
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
